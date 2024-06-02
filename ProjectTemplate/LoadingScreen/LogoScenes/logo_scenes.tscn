@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd3pmly1xuyha"]
+
+[ext_resource type="Script" path="res://ProjectTemplate/LoadingScreen/LogoScenes/LogoSceneManager.gd" id="1_ww52e"]
+[ext_resource type="PackedScene" uid="uid://d4br7x3gavgp5" path="res://ProjectTemplate/LoadingScreen/LogoScenes/company_logo.tscn" id="2_xk76a"]
+[ext_resource type="PackedScene" uid="uid://cuia60erqq5b8" path="res://ProjectTemplate/LoadingScreen/LogoScenes/godot_logo.tscn" id="3_606s8"]
+
+[node name="LogoScenes" type="Node"]
+script = ExtResource("1_ww52e")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="GodotLogo" parent="." instance=ExtResource("3_606s8")]
+
+[node name="CompanyLogo" parent="." instance=ExtResource("2_xk76a")]

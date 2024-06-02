@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0v7td2xiqkt"]
+
+[ext_resource type="Script" path="res://ProjectTemplate/LoadingScreen/LoadingManager.gd" id="1_jrg57"]
+[ext_resource type="PackedScene" uid="uid://dd3pmly1xuyha" path="res://ProjectTemplate/LoadingScreen/LogoScenes/logo_scenes.tscn" id="1_qii88"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jrg57")
+
+[node name="LogoScenes" parent="." instance=ExtResource("1_qii88")]
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.0
+offset_top = 153.0
+offset_right = 175.0
+offset_bottom = 269.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "Project Title"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -81.0
+offset_right = 83.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
