@@ -18,8 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://ProjectTemplate/Signal Bus/SignalBus.gd"
+SignalBus="*res://ProjectTemplate/SignalBus/SignalBus.gd"
 SceneManager="*res://ProjectTemplate/SceneManager/SceneManager.gd"
+SoundManager="*res://ProjectTemplate/SoundManager/sound_manager.gd"
 
 [input]
 
