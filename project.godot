@@ -13,9 +13,8 @@ config_version=5
 config/name="Godot-Template"
 run/main_scene="res://ProjectTemplate/LoadingScreen/loading_screen.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-boot_splash/image="res://ProjectTemplate/LoadingScreen/GodotSplashScreens/icon-dark.png"
+boot_splash/show_image=false
 config/icon="res://icon.svg"
-boot_splash/minimum_display_time=500
 
 [rendering]
 
