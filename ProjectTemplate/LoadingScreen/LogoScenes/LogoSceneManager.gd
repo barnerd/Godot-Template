@@ -2,15 +2,17 @@ extends Node
 
 @onready var timer: Timer = $Timer
 
+@export var scene_delay: float = 1.0
+
 signal logo_scenes_finished()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for child in get_children():
-		if not child is Timer:
-			# wait a second for the next logo
-			timer.start(1)
+		if child is LogoScene:
+			# wait for the next logo
+			timer.start(scene_delay)
 			await timer.timeout
 			
 			# have scene display it's logo
