@@ -1,5 +1,6 @@
 extends Node
 
+enum SoundBus {MASTER, MUSIC, AMBIENT, SOUND, UI}
 
 const SoundEffectsPlayer = preload("./sound_effects.gd")
 const AmbientSoundsPlayer = preload("./ambient_sounds.gd")
@@ -7,7 +8,7 @@ const MusicPlayer = preload("./music.gd")
 
 var sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["Sounds", "SFX"], 8)
 var ui_sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["UI", "Interface", "Sounds", "SFX"], 8)
-var ambient_sounds: AmbientSoundsPlayer = AmbientSoundsPlayer.new(["Sounds", "SFX"], 1)
+var ambient_sounds: AmbientSoundsPlayer = AmbientSoundsPlayer.new(["Ambient", "Sounds", "SFX"], 1)
 var music: MusicPlayer = MusicPlayer.new(["Music"], 2)
 
 var sound_process_mode: ProcessMode:
@@ -22,13 +23,11 @@ var ui_sound_process_mode: ProcessMode:
 	get:
 		return ui_sound_effects.process_mode
 
-
 var ambient_sound_process_mode: ProcessMode:
 	set(value):
 		ambient_sounds.process_mode = value
 	get:
 		return ambient_sounds.process_mode
-
 
 var music_process_mode: ProcessMode:
 	set(value):
@@ -51,6 +50,63 @@ func _init() -> void:
 	self.music_process_mode = PROCESS_MODE_ALWAYS
 
 
+func _ready() -> void:
+	SettingsManager.register_setting("master_volume", 1.0, "sound")
+	SettingsManager.register_setting("music_volume", 1.0, "sound")
+	SettingsManager.register_setting("ambient_volume", 1.0, "sound")
+	SettingsManager.register_setting("sfx_volume", 1.0, "sound")
+	SettingsManager.register_setting("ui_sound_volume", 1.0, "sound")
+	
+	set_volume(SoundBus.MASTER, SettingsManager.get_value("master_volume", "sound"))
+	set_volume(SoundBus.MUSIC, SettingsManager.get_value("music_volume", "sound"))
+	set_volume(SoundBus.AMBIENT, SettingsManager.get_value("ambient_volume", "sound"))
+	set_volume(SoundBus.SOUND, SettingsManager.get_value("sfx_volume", "sound"))
+	set_volume(SoundBus.UI, SettingsManager.get_value("ui_sound_volume", "sound"))
+
+
+func get_volume(bus: SoundBus) -> float:
+	var volume_between_0_and_1: float = 0.0
+	
+	match bus:
+		SoundBus.MASTER:
+			volume_between_0_and_1 = get_master_volume()
+		SoundBus.MUSIC:
+			volume_between_0_and_1 = get_music_volume()
+		SoundBus.AMBIENT:
+			volume_between_0_and_1 = get_ambient_sound_volume()
+		SoundBus.SOUND:
+			volume_between_0_and_1 = get_sound_volume()
+		SoundBus.UI:
+			volume_between_0_and_1 = get_ui_sound_volume()
+	
+	return volume_between_0_and_1
+
+
+func set_volume(bus: SoundBus, volume_between_0_and_1: float) -> void:
+	match bus:
+		SoundBus.MASTER:
+			set_master_volume(volume_between_0_and_1)
+		SoundBus.MUSIC:
+			set_music_volume(volume_between_0_and_1)
+		SoundBus.AMBIENT:
+			set_ambient_sound_volume(volume_between_0_and_1)
+		SoundBus.SOUND:
+			set_sound_volume(volume_between_0_and_1)
+		SoundBus.UI:
+			set_ui_sound_volume(volume_between_0_and_1)
+
+
+func get_master_volume() -> float:
+	# TODO: don't hardcode 0 here
+	return db_to_linear(AudioServer.get_bus_volume_db(0))
+
+
+func set_master_volume(volume_between_0_and_1: float) -> void:
+	# TODO: don't hardcode 0 here
+	AudioServer.set_bus_volume_db(0, linear_to_db(volume_between_0_and_1))
+	SettingsManager.set_value("master_volume", volume_between_0_and_1, "sound")
+
+
 #region Sounds
 
 
@@ -60,7 +116,9 @@ func get_sound_volume() -> float:
 
 func set_sound_volume(volume_between_0_and_1: float) -> void:
 	_show_shared_bus_warning()
+	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(sound_effects.bus), linear_to_db(volume_between_0_and_1))
+	SettingsManager.set_value("sfx_volume", volume_between_0_and_1, "sound")
 
 
 func play_sound(resource: AudioStream, override_bus: String = "") -> AudioStreamPlayer:
@@ -92,7 +150,9 @@ func get_ui_sound_volume() -> float:
 
 func set_ui_sound_volume(volume_between_0_and_1: float) -> void:
 	_show_shared_bus_warning()
+	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(ui_sound_effects.bus), linear_to_db(volume_between_0_and_1))
+	SettingsManager.set_value("ui_sound_volume", volume_between_0_and_1, "sound")
 
 
 func play_ui_sound(resource: AudioStream, override_bus: String = "") -> AudioStreamPlayer:
@@ -124,7 +184,9 @@ func get_ambient_sound_volume() -> float:
 
 func set_ambient_sound_volume(volume_between_0_and_1: float) -> void:
 	_show_shared_bus_warning()
+	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(ambient_sounds.bus), linear_to_db(volume_between_0_and_1))
+	SettingsManager.set_value("ambient_volume", volume_between_0_and_1, "sound")
 
 
 func play_ambient_sound(resource: AudioStream, fade_in_duration: float = 0.0, override_bus: String = "") -> AudioStreamPlayer:
@@ -153,7 +215,9 @@ func get_music_volume() -> float:
 
 func set_music_volume(volume_between_0_and_1: float) -> void:
 	_show_shared_bus_warning()
+	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(music.bus), linear_to_db(volume_between_0_and_1))
+	SettingsManager.set_value("music_volume", volume_between_0_and_1, "sound")
 
 
 func play_music(resource: AudioStream, crossfade_duration: float = 0.0, override_bus: String = "") -> AudioStreamPlayer:

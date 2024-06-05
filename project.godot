@@ -18,9 +18,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://ProjectTemplate/SignalBus/SignalBus.gd"
-SceneManager="*res://ProjectTemplate/SceneManager/SceneManager.gd"
+SignalBus="*res://ProjectTemplate/SignalBus/signal_bus.gd"
+SceneManager="*res://ProjectTemplate/SceneManager/scene_manager.gd"
 SoundManager="*res://ProjectTemplate/SoundManager/sound_manager.gd"
+SettingsManager="*res://ProjectTemplate/SettingsManager/settings_manager.gd"
 
 [input]
 
@@ -73,6 +74,10 @@ attack_3={
 "deadzone": 0.5,
 "events": []
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://ProjectTemplate/Localization/Translations/translations.en_US.translation", "res://ProjectTemplate/Localization/Translations/translations.es.translation", "res://ProjectTemplate/Localization/Translations/translations.de.translation", "res://ProjectTemplate/Localization/Translations/translations.fr.translation")
 
 [rendering]
 

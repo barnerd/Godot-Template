@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://s7no0auxep3y"]
+[gd_scene load_steps=2 format=3 uid="uid://s7no0auxep3y"]
+
+[ext_resource type="Script" path="res://MainScenes/title_screen.gd" id="1_motlp"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -7,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_motlp")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -27,24 +31,81 @@ Title"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 1015.0
-offset_top = 477.0
-offset_right = 1108.0
-offset_bottom = 613.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -187.0
+offset_right = -51.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
 
-[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+[node name="NewGameLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "New Game"
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "TITLE_SCREEN_NEW_GAME_BUTTON"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Continue"
+[node name="Button" type="Button" parent="VBoxContainer/NewGameLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+[node name="ContinueLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Settings"
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "TITLE_SCREEN_CONTINUE_GAME_BUTTON"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/ContinueLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "TITLE_SCREEN_SETTINGS_BUTTON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/SettingsLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuitLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "TITLE_SCREEN_QUIT_GAME_BUTTON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/QuitLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="VBoxContainer/SettingsLabel/Button" to="." method="_on_settings_button_pressed"]

@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	progress_percent = 0.0
 	
 	if SceneManager.title_screen_scene:
@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 
 func on_logo_scenes_finished() -> void:
 	print("logo scenes are finished")
+	$LogoScenes.queue_free()
 	
 	if progress_percent < 1.0:
 		progress_bar.visible = true
