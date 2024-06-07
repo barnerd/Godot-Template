@@ -3,28 +3,28 @@ extends Node
 var signal_list: Dictionary = {} # String -> Signal
 
 
-func get_signal(name: String) -> Signal:
-	if signal_list.has(name):
-		return signal_list[name]
+func get_signal(signal_name: String) -> Signal:
+	if signal_list.has(signal_name):
+		return signal_list[signal_name]
 	else:
 		# return empty signal. similar to null, but signal isn't nullable
 		# check for null by using:
-		# if signal_name.is_null():
+		# if signalsignal_name.is_null():
 		return Signal()
 
 
-func register_signal(name: String, _signal: Signal):
-	if not signal_list.has(name):
-		signal_list[name] = _signal
+func register_signal(signal_name: String, _signal: Signal):
+	if not signal_list.has(signal_name):
+		signal_list[signal_name] = _signal
 	else:
-		print("%s already registered" % name)
+		print("%s already registered" % signal_name)
 
 
-func connect_to_signal(name: String, callable: Callable):
-	if signal_list.has(name):
-		if not signal_list[name].is_connected(callable):
-			signal_list[name].connect(callable)
+func connect_to_signal(signal_name: String, callable: Callable):
+	if signal_list.has(signal_name):
+		if not signal_list[signal_name].is_connected(callable):
+			signal_list[signal_name].connect(callable)
 		else:
-			print("%s is already connected to %s" % [callable, name])
+			print("%s is already connected to %s" % [callable, signal_name])
 	else:
-		print("%s not found" % name)
+		print("%s not found" % signal_name)

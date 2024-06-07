@@ -10,7 +10,7 @@ signal logo_scenes_finished()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for child in get_children():
-		if child is LogoScene:
+		if child is BootSplash:
 			# wait for the next logo
 			timer.start(scene_delay)
 			await timer.timeout

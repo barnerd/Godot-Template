@@ -6,7 +6,7 @@ const SETTINGS_FILE: String = "user://settings.cfg"
 const DEFAULT_SECTION: String = "user"
 
 var config: ConfigFile
-var settings: Dictionary = {}
+var settings: Dictionary = {} # String -> setting
 
 
 func _init() -> void:
@@ -17,7 +17,7 @@ func _init() -> void:
 func _ready() -> void:
 	# TODO: Find better owner for this
 	register_setting("game_locale", "en_US", "locale")
-	TranslationServer.set_locale(get_value("game_locale"))
+	TranslationServer.set_locale(get_value("game_locale", "locale"))
 
 
 func register_setting(key: String, default, section: String = DEFAULT_SECTION) -> void:
