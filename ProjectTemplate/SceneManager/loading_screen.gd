@@ -75,7 +75,7 @@ func _on_transition_out_ready() -> void:
 	#print("4. loading_screen on_transition_out_ready")
 	midpoint_reached.emit()
 	# timer to give time to see the midpoint
-	await get_tree().create_timer(2.0).timeout
+	#await get_tree().create_timer(2.0).timeout
 	_transition.finish(self, _outgoing_scene, _incoming_scene, _transition_options)
 
 
