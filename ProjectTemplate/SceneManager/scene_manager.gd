@@ -12,7 +12,6 @@ var main_scene: PackedScene
 var bootsplash_paths: Array[String] = [
 	"res://ProjectTemplate/SceneManager/BootSplashes/company_logo.tscn",
 	"res://ProjectTemplate/SceneManager/BootSplashes/godot_logo.tscn",
-	"res://ProjectTemplate/SceneManager/BootSplashes/company_logo.tscn",
 	]
 
 var bootsplash_index: int
@@ -65,9 +64,9 @@ func load_next_bootsplash() -> void:
 	if bootsplash_index >= bootsplash_paths.size():
 		# bootsplashes are done, load main menu
 		# TODO: switch loading_screen to boot_screen and preload main & assets
-		load_scene(main_menu_scene_path, "color_fade", { "color": Color.INDIAN_RED })
+		load_scene(main_menu_scene_path)
 	else:
-		load_scene(bootsplash_paths[bootsplash_index], "color_fade", { "color": Color.INDIAN_RED })
+		load_scene(bootsplash_paths[bootsplash_index])
 
 
 func load_scene(incoming_scene_path: String, transition: String = "color_fade", options: Dictionary = { "color": Color("#242424") }) -> void:
