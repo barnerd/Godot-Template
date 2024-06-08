@@ -1,6 +1,6 @@
 extends Container
 
-@export var bus: SoundManager.SoundBus
+@export var bus: SoundManager.SoundChannel
 @export var label_text: String
 
 @onready var label = $Label

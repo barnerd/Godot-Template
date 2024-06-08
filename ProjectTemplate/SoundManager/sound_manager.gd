@@ -1,6 +1,6 @@
 extends Node
 
-enum SoundBus {MASTER, MUSIC, AMBIENT, SOUND, UI}
+enum SoundChannel {MASTER, MUSIC, AMBIENT, SOUND, UI}
 
 const SoundEffectsPlayer = preload("./sound_effects.gd")
 const AmbientSoundsPlayer = preload("./ambient_sounds.gd")
@@ -57,42 +57,42 @@ func _ready() -> void:
 	SettingsManager.register_setting("sfx_volume", 1.0, "sound")
 	SettingsManager.register_setting("ui_sound_volume", 1.0, "sound")
 	
-	set_volume(SoundBus.MASTER, SettingsManager.get_value("master_volume", "sound"))
-	set_volume(SoundBus.MUSIC, SettingsManager.get_value("music_volume", "sound"))
-	set_volume(SoundBus.AMBIENT, SettingsManager.get_value("ambient_volume", "sound"))
-	set_volume(SoundBus.SOUND, SettingsManager.get_value("sfx_volume", "sound"))
-	set_volume(SoundBus.UI, SettingsManager.get_value("ui_sound_volume", "sound"))
+	set_volume(SoundChannel.MASTER, SettingsManager.get_value("master_volume", "sound"))
+	set_volume(SoundChannel.MUSIC, SettingsManager.get_value("music_volume", "sound"))
+	set_volume(SoundChannel.AMBIENT, SettingsManager.get_value("ambient_volume", "sound"))
+	set_volume(SoundChannel.SOUND, SettingsManager.get_value("sfx_volume", "sound"))
+	set_volume(SoundChannel.UI, SettingsManager.get_value("ui_sound_volume", "sound"))
 
 
-func get_volume(bus: SoundBus) -> float:
+func get_volume(bus: SoundChannel) -> float:
 	var volume_between_0_and_1: float = 0.0
 	
 	match bus:
-		SoundBus.MASTER:
+		SoundChannel.MASTER:
 			volume_between_0_and_1 = get_master_volume()
-		SoundBus.MUSIC:
+		SoundChannel.MUSIC:
 			volume_between_0_and_1 = get_music_volume()
-		SoundBus.AMBIENT:
+		SoundChannel.AMBIENT:
 			volume_between_0_and_1 = get_ambient_sound_volume()
-		SoundBus.SOUND:
+		SoundChannel.SOUND:
 			volume_between_0_and_1 = get_sound_volume()
-		SoundBus.UI:
+		SoundChannel.UI:
 			volume_between_0_and_1 = get_ui_sound_volume()
 	
 	return volume_between_0_and_1
 
 
-func set_volume(bus: SoundBus, volume_between_0_and_1: float) -> void:
+func set_volume(bus: SoundChannel, volume_between_0_and_1: float) -> void:
 	match bus:
-		SoundBus.MASTER:
+		SoundChannel.MASTER:
 			set_master_volume(volume_between_0_and_1)
-		SoundBus.MUSIC:
+		SoundChannel.MUSIC:
 			set_music_volume(volume_between_0_and_1)
-		SoundBus.AMBIENT:
+		SoundChannel.AMBIENT:
 			set_ambient_sound_volume(volume_between_0_and_1)
-		SoundBus.SOUND:
+		SoundChannel.SOUND:
 			set_sound_volume(volume_between_0_and_1)
-		SoundBus.UI:
+		SoundChannel.UI:
 			set_ui_sound_volume(volume_between_0_and_1)
 
 
