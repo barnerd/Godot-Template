@@ -36,7 +36,7 @@ func _init() -> void:
 	# load all transitions
 	for file in transition_paths:
 		var new_transition = load(file).new()
-		if new_transition is Transition:
+		if new_transition is Transition and not transitions.has(new_transition.transition_name):
 			transitions[new_transition.transition_name] = new_transition
 
 
