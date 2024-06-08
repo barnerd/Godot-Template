@@ -8,12 +8,7 @@ var main_menu_scene: PackedScene
 var new_game_scene: PackedScene
 var main_scene: PackedScene
 
-# order matters
-var bootsplash_paths: Array[String] = [
-	"res://ProjectTemplate/SceneManager/BootSplashes/company_logo.tscn",
-	"res://ProjectTemplate/SceneManager/BootSplashes/godot_logo.tscn",
-	]
-
+var bootsplash_paths: Array[String] = []
 var bootsplash_index: int
 
 # order doesn't matter
@@ -45,16 +40,14 @@ func _init() -> void:
 			transitions[new_transition.transition_name] = new_transition
 
 
-func _ready() -> void:
+func load_bootsplashes(_bootsplash_paths: Array[String]) -> void:
+	bootsplash_paths = _bootsplash_paths
+	
 	# run through BootSplashes
 	bootsplash_index = -1
 	if bootsplash_paths.size() > 0:
 		await get_tree().create_timer(0.5).timeout
 		load_next_bootsplash()
-	
-	# start TitleScreen (which pre-loads assets)
-	# 	TitleScreen loads MainMenu
-	#current_scene = main_menu_scene.instantiate()
 
 
 func load_next_bootsplash() -> void:
