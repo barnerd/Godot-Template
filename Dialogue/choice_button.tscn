@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dhcd7m45kmmxo"]
+
+[node name="Button" type="Button"]
+text = "Options 1"
+alignment = 0

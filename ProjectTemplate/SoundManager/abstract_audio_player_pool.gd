@@ -136,7 +136,7 @@ func _on_player_finished(player: AudioStreamPlayer) -> void:
 	mark_player_as_available(player)
 
 
-func _on_fade_completed(player: AudioStreamPlayer, tween: Tween, from_volume: float, to_volume: float, duration: float):
+func _on_fade_completed(player: AudioStreamPlayer, _tween: Tween, _from_volume: float, to_volume: float, _duration: float):
 	_remove_tween(player)
 
 	# If we just faded out then our player is now available
