@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyx1rbj2s631j"]
+[gd_scene load_steps=3 format=3 uid="uid://cyx1rbj2s631j"]
 
 [ext_resource type="PackedScene" uid="uid://bw2tb34sylvq3" path="res://MainScenes/Credits/credits_section.tscn" id="1_12h1r"]
+[ext_resource type="Theme" uid="uid://8rtfbrfbseru" path="res://game_theme.tres" id="1_pkjcl"]
 
 [node name="CreditsWindow" type="Window"]
 title = "Credits"
 initial_position = 1
 size = Vector2i(400, 351)
 unresizable = true
+theme = ExtResource("1_pkjcl")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_right = 400.0
@@ -26,23 +28,34 @@ horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 30
 
-[node name="CreditsSection2" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_12h1r")]
+[node name="Main Section" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_12h1r")]
 layout_mode = 2
-header_text = "Header 1"
+header_text = "Produced By"
+section_text = "David Barner, @verage Games"
 
-[node name="CreditsSection" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_12h1r")]
+[node name="Libraries" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_12h1r")]
 layout_mode = 2
-header_text = "Header 2"
-section_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut volutpat ipsum. Nullam in urna quam. Sed at cursus ex, nec scelerisque ipsum. Sed elit ex, condimentum non molestie quis, eleifend at metus. Proin dignissim leo a porttitor euismod. Maecenas et lacus ac mauris sagittis condimentum aliquet sed neque. Pellentesque cursus lobortis elit eget aliquam. In quis felis nec justo ullamcorper facilisis. Cras tempor tristique nisl. Duis pharetra dolor et dui efficitur convallis. Aenean vel molestie lacus. Nam commodo nisi a consectetur luctus. Donec et pretium elit, at aliquam arcu.
+header_text = "Libraries, Add-ons, Extensions, Templates"
+section_text = "Nathan Hoad - Sound Manager
 
-Nunc maximus fringilla nulla gravida iaculis. Phasellus varius interdum enim at fringilla. Quisque vel imperdiet nulla. Donec lacinia turpis at libero iaculis placerat. Mauris lobortis dolor lacus, eu viverra lacus consequat ac. Etiam in mi mi. Curabitur placerat libero eu justo auctor varius. Donec scelerisque metus non est tincidunt semper. Quisque eget velit sollicitudin, feugiat libero ut, porta leo. Integer luctus iaculis magna, eget dictum nisi dignissim id. Curabitur in fringilla massa. Maecenas tempor vel lorem ac feugiat. Pellentesque vitae hendrerit nibh.
+miguel - Save Game System
 
-Maecenas quis erat vestibulum, cursus nunc vitae, ornare nisl. Phasellus eget libero vel justo tincidunt placerat ut sit amet nulla. Nullam commodo imperdiet nibh non viverra. Aenean consectetur sem sit amet elit gravida tristique. Ut vulputate augue justo, a aliquam elit suscipit ut. Aliquam pellentesque, ante id ultricies pretium, eros magna laoreet sem, in rutrum nulla dolor quis dolor. Sed luctus tristique sapien sed mollis.
+Frédéric Maquin <fred@ephread.com> - InkGD
 
-Proin imperdiet massa vitae suscipit tristique. Mauris pharetra orci vitae elementum semper. Aenean vel sapien ligula. Suspendisse varius vulputate suscipit. Quisque vitae tempus urna. Suspendisse luctus, mauris ac porta aliquet, dui sapien euismod mi, at tristique dui dolor vitae turpis. Nulla tempus nibh nunc, a maximus metus suscipit ac. In vel auctor dolor.
+inkle Ltd. - Ink"
 
-Aliquam nec tortor ac mauris placerat rutrum eget sed magna. Integer aliquet nulla ut velit viverra tincidunt. Donec tempus et odio ut tincidunt. Praesent sit amet volutpat turpis. Donec ultricies ipsum quis urna tincidunt, sit amet luctus eros mattis. Morbi ullamcorper nulla tellus. Donec eu hendrerit turpis, luctus ultricies ante. Ut varius, lorem a euismod rutrum, ipsum lacus mollis dolor, tempor accumsan est nibh sed nisi. Donec auctor euismod velit, dictum pharetra eros faucibus id. In eget ante et massa accumsan dictum eget non justo. Fusce at dolor et enim bibendum scelerisque ac non purus."
+[node name="Graphics" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_12h1r")]
+layout_mode = 2
+header_text = "Godot Splash"
+section_text = "Kenney - www.kenney.nl"
+
+[node name="Sounds" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_12h1r")]
+layout_mode = 2
+header_text = "Sounds"
+section_text = "eklee - Keyboard Keys
+
+Kenney - www.kenney.nl - UI Sounds"
 
 [connection signal="close_requested" from="." to="." method="hide"]
