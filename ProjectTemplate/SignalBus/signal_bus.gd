@@ -9,7 +9,7 @@ func get_signal(signal_name: String) -> Signal:
 	else:
 		# return empty signal. similar to null, but signal isn't nullable
 		# check for null by using:
-		# if signalsignal_name.is_null():
+		# if signal_name.is_null():
 		return Signal()
 
 
