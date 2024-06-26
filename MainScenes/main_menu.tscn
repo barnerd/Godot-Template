@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://s7no0auxep3y"]
+[gd_scene load_steps=7 format=3 uid="uid://s7no0auxep3y"]
 
+[ext_resource type="Theme" uid="uid://8rtfbrfbseru" path="res://game_theme.tres" id="1_jfysm"]
 [ext_resource type="Script" path="res://MainScenes/MainMenu/settings_button.gd" id="1_motlp"]
 [ext_resource type="Script" path="res://MainScenes/MainMenu/new_game_button.gd" id="1_rkvwr"]
 [ext_resource type="Script" path="res://MainScenes/MainMenu/continue_button.gd" id="2_0n7q5"]
 [ext_resource type="Script" path="res://MainScenes/MainMenu/quit_button.gd" id="3_xaonx"]
+[ext_resource type="Script" path="res://MainScenes/MainMenu/credits_button.gd" id="4_at2yc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("1_jfysm")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -99,6 +102,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CreditsLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "TITLE_SCREEN_CREDITS_BUTTON"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_at2yc")
+
+[node name="Button" type="Button" parent="VBoxContainer/CreditsLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="QuitLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
@@ -119,4 +139,5 @@ grow_vertical = 2
 [connection signal="pressed" from="VBoxContainer/NewGameLabel/Button" to="VBoxContainer/NewGameLabel" method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueLabel/Button" to="VBoxContainer/ContinueLabel" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsLabel/Button" to="VBoxContainer/SettingsLabel" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsLabel/Button" to="VBoxContainer/CreditsLabel" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitLabel/Button" to="VBoxContainer/QuitLabel" method="_on_quit_button_pressed"]
