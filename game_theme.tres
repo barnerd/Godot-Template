@@ -6,3 +6,7 @@ CreditsSectionHeader/colors/font_color = Color(0.704108, 0.295875, 0.0313262, 1)
 CreditsSectionHeader/colors/font_outline_color = Color(0, 0, 0, 1)
 CreditsSectionHeader/font_sizes/font_size = 24
 CreditsSectionText/base_type = &"Label"
+MainMenuButtonContainer/base_type = &"VBoxContainer"
+MainMenuButtonContainer/constants/separation = 50
+MainMenuLabel/base_type = &"Label"
+MainMenuLabel/font_sizes/font_size = 24
