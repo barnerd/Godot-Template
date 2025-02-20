@@ -1,8 +1,16 @@
 extends Node
 
+signal story_variable_set(variable_name: String, delta: float)
+signal story_variable_changed(variable_name: String, value: float)
+
 @onready var ink_player = InkPlayer.new()
 
 var is_story_loaded: bool = false
+
+
+func _init() -> void:
+	SignalBus.register_signal("story_variable_set", story_variable_set)
+	SignalBus.register_signal("story_variable_changed", story_variable_changed)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,8 +31,23 @@ func _on_story_loaded(is_successful: bool) -> void:
 		return
 	
 	is_story_loaded = true
+	bind_functions()
 	#ink_player.continue_story()
 
+
+func bind_functions() -> void:
+	ink_player.bind_external_function("set_variable", self, "set_variable")
+	ink_player.bind_external_function("change_variable", self, "change_variable")
+
+
+func set_variable(variable_name: String, value: float) -> void:
+	story_variable_set.emit(variable_name, value)
+	ink_player.continue_story()
+
+
+func change_variable(variable_name: String, delta: float) -> void:
+	story_variable_changed.emit(variable_name, delta)
+	ink_player.continue_story()
 
 
 # I'm not sure if continue_story() is needed after making a choice
