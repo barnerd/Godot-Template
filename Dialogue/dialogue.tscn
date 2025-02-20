@@ -6,10 +6,8 @@ bg_color = Color(0.435294, 0.94902, 0.976471, 1)
 [node name="Dialogue" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 380.0
-offset_top = 422.0
-offset_right = 930.0
-offset_bottom = 572.0
+offset_right = 550.0
+offset_bottom = 150.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
