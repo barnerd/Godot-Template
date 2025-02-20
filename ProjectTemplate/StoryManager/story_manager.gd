@@ -21,7 +21,7 @@ func _ready() -> void:
 	#ink_player.connect("ended", on_story_ended)
 	
 	# TODO: Move this to the BootLoad process
-	ink_player.ink_file = load("res://Dialogue/Dialogue.ink.json")
+	ink_player.ink_file = load("res://dialogue/main_dialogue.ink.json")
 	ink_player.loads_in_background = true
 	ink_player.create_story()
 
