@@ -13,14 +13,16 @@ func get_signal(signal_name: String) -> Signal:
 		return Signal()
 
 
-func register_signal(signal_name: String, _signal: Signal):
+func register_signal(signal_name: String, _signal: Signal) -> Signal:
 	if not signal_list.has(signal_name):
 		signal_list[signal_name] = _signal
 	else:
-		print("%s already registered" % signal_name)
+		push_warning("%s already registered" % signal_name)
+	
+	return signal_list[signal_name]
 
 
-func connect_to_signal(signal_name: String, callable: Callable):
+func connect_to_signal(signal_name: String, callable: Callable) -> void:
 	if signal_list.has(signal_name):
 		if not signal_list[signal_name].is_connected(callable):
 			signal_list[signal_name].connect(callable)
