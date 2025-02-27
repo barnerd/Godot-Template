@@ -27,6 +27,6 @@ func connect_to_signal(signal_name: String, callable: Callable) -> void:
 		if not signal_list[signal_name].is_connected(callable):
 			signal_list[signal_name].connect(callable)
 		else:
-			print("%s is already connected to %s" % [callable, signal_name])
+			push_warning("%s is already connected to %s" % [callable, signal_name])
 	else:
-		print("%s not found" % signal_name)
+		push_error("%s not found" % signal_name)
