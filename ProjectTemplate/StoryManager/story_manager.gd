@@ -1,11 +1,12 @@
 extends Node
 
-signal story_variable_set(variable_name: String, delta: float)
-signal story_variable_changed(variable_name: String, value: float)
+signal story_variable_set(variable_name: String, delta: Variant)
+signal story_variable_changed(variable_name: String, value: Variant)
 
-@onready var ink_player = InkPlayer.new()
+var ink_player: InkPlayer
 
 var is_story_loaded: bool = false
+var _registered_variable_getters: Dictionary = {} # String -> Callable
 
 
 func _init() -> void:
@@ -15,6 +16,8 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	ink_player = InkPlayer.new()
+	add_child(ink_player)
 	ink_player.connect("loaded", _on_story_loaded)
 	#ink_player.connect("continued", _on_story_continued)
 	#ink_player.connect("prompt_choices", _prompt_choices)
@@ -22,6 +25,7 @@ func _ready() -> void:
 	
 	# TODO: Move this to the BootLoad process
 	ink_player.ink_file = load("res://dialogue/main_dialogue.ink.json")
+	# This may need to be set to false for the web
 	ink_player.loads_in_background = true
 	ink_player.create_story()
 
@@ -35,17 +39,30 @@ func _on_story_loaded(is_successful: bool) -> void:
 	#ink_player.continue_story()
 
 
+func register_story_variable_getter(_name: String, _getter: Callable) -> void:
+	_registered_variable_getters[_name] = _getter
+
+
 func bind_functions() -> void:
+	ink_player.bind_external_function("get_variable", self, "get_variable")
 	ink_player.bind_external_function("set_variable", self, "set_variable")
 	ink_player.bind_external_function("change_variable", self, "change_variable")
 
 
-func set_variable(variable_name: String, value: float) -> void:
+func get_variable(_name: String) -> Variant:
+	if _registered_variable_getters.has(_name):
+		return _registered_variable_getters[_name].call()
+	else:
+		push_warning("getter for variable %s not found" % _name)
+		return null
+
+
+func set_variable(variable_name: String, value: Variant) -> void:
 	story_variable_set.emit(variable_name, value)
 	ink_player.continue_story()
 
 
-func change_variable(variable_name: String, delta: float) -> void:
+func change_variable(variable_name: String, delta: Variant) -> void:
 	story_variable_changed.emit(variable_name, delta)
 	ink_player.continue_story()
 
