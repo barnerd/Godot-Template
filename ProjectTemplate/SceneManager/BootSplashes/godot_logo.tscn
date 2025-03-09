@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cuia60erqq5b8"]
 
-[ext_resource type="Script" path="res://ProjectTemplate/LoadingScreen/LogoScenes/boot_splash_image_wait.gd" id="1_h8l0u"]
+[ext_resource type="Script" uid="uid://bwx0hyhejyj4k" path="res://ProjectTemplate/LoadingScreen/LogoScenes/boot_splash_image_wait.gd" id="1_h8l0u"]
 [ext_resource type="Texture2D" uid="uid://bq5kykojlnbqb" path="res://ProjectTemplate/LoadingScreen/GodotSplashScreens/cog-dark.png" id="2_w6lw3"]
 
 [node name="GodotLogo" type="Control"]

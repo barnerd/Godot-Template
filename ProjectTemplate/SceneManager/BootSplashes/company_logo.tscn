@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://d4br7x3gavgp5"]
 
-[ext_resource type="Script" path="res://ProjectTemplate/LoadingScreen/LogoScenes/boot_splash_animation_player.gd" id="1_phm1e"]
-[ext_resource type="Script" path="res://ProjectTemplate/LoadingScreen/LogoScenes/CompanySfx.gd" id="2_ybqgn"]
+[ext_resource type="Script" uid="uid://d13fv4qmi2ced" path="res://ProjectTemplate/LoadingScreen/LogoScenes/boot_splash_animation_player.gd" id="1_phm1e"]
+[ext_resource type="Script" uid="uid://c41i0c3ied3ms" path="res://ProjectTemplate/LoadingScreen/LogoScenes/CompanySfx.gd" id="2_ybqgn"]
 [ext_resource type="AudioStream" uid="uid://2vksos8caeec" path="res://ProjectTemplate/LoadingScreen/LogoScenes/Sounds/eklee-KeyPresses-cc0-opengameart/wav44100/eklee-KeyPressOld06.wav" id="3_xx2di"]
 [ext_resource type="AudioStream" uid="uid://b56ri70qyml8c" path="res://ProjectTemplate/LoadingScreen/LogoScenes/Sounds/eklee-KeyPresses-cc0-opengameart/wav44100/eklee-KeyPressOld01.wav" id="4_fi02b"]
 [ext_resource type="AudioStream" uid="uid://cbymq077402jd" path="res://ProjectTemplate/LoadingScreen/LogoScenes/Sounds/eklee-KeyPresses-cc0-opengameart/wav44100/eklee-KeyPressOld02.wav" id="5_5p65v"]
@@ -174,8 +174,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5l7ff"]
 _data = {
-"RESET": SubResource("Animation_cfjd6"),
-"display_logo": SubResource("Animation_mot4v")
+&"RESET": SubResource("Animation_cfjd6"),
+&"display_logo": SubResource("Animation_mot4v")
 }
 
 [node name="CompanyLogo" type="Control"]

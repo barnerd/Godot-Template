@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://s7no0auxep3y"]
 
 [ext_resource type="Theme" uid="uid://8rtfbrfbseru" path="res://game_theme.tres" id="1_jfysm"]
-[ext_resource type="Script" path="res://MainScenes/MainMenu/settings_button.gd" id="1_motlp"]
-[ext_resource type="Script" path="res://MainScenes/MainMenu/new_game_button.gd" id="1_rkvwr"]
-[ext_resource type="Script" path="res://MainScenes/MainMenu/continue_button.gd" id="2_0n7q5"]
-[ext_resource type="Script" path="res://MainScenes/MainMenu/quit_button.gd" id="3_xaonx"]
-[ext_resource type="Script" path="res://MainScenes/MainMenu/credits_button.gd" id="4_at2yc"]
+[ext_resource type="Script" uid="uid://c5pdslw6ljcmc" path="res://MainScenes/MainMenu/settings_button.gd" id="1_motlp"]
+[ext_resource type="Script" uid="uid://1i35bbtwugv8" path="res://MainScenes/MainMenu/new_game_button.gd" id="1_rkvwr"]
+[ext_resource type="Script" uid="uid://jah33l2hn30k" path="res://MainScenes/MainMenu/continue_button.gd" id="2_0n7q5"]
+[ext_resource type="Script" uid="uid://ck3sdg2xwmvut" path="res://MainScenes/MainMenu/quit_button.gd" id="3_xaonx"]
+[ext_resource type="Script" uid="uid://d2xvmr7ekcm53" path="res://MainScenes/MainMenu/credits_button.gd" id="4_at2yc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

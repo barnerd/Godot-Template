@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bymr4udk4regt"]
 
-[ext_resource type="Script" path="res://ProjectTemplate/SceneManager/loading_screen.gd" id="1_tbk0v"]
+[ext_resource type="Script" uid="uid://csc30m6fac08a" path="res://ProjectTemplate/SceneManager/loading_screen.gd" id="1_tbk0v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_la78r"]
 bg_color = Color(1, 1, 1, 1)

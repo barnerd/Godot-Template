@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://br6nr26nvujs8"]
 
-[ext_resource type="Script" path="res://MainScenes/Settings/LocaleOptionButton.gd" id="1_0n5sg"]
+[ext_resource type="Script" uid="uid://c6qmngtws10tl" path="res://MainScenes/Settings/LocaleOptionButton.gd" id="1_0n5sg"]
 
 [node name="LanguageSettings" type="VBoxContainer"]
 

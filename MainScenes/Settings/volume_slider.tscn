@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drql3pqlnn6xc"]
 
-[ext_resource type="Script" path="res://MainScenes/Settings/volume_setting.gd" id="1_h6er6"]
+[ext_resource type="Script" uid="uid://cyvf1ut8ptive" path="res://MainScenes/Settings/volume_setting.gd" id="1_h6er6"]
 
 [node name="Volume" type="HBoxContainer"]
 script = ExtResource("1_h6er6")
