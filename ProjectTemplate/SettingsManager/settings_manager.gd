@@ -2,16 +2,17 @@ extends Node
 
 signal settings_value_changed(key: String, new_value, old_value)
 
-const SETTINGS_FILE: String = "user://settings.cfg"
+const SETTINGS_FILE_PATH: String = "user://settings.cfg"
 const DEFAULT_SECTION: String = "user"
 
 var config: ConfigFile
-var settings: Dictionary = {} # String -> setting
+var settings: Dictionary[String, Variant] = {} # String -> setting
+var password = OS.get_unique_id()
 
 
 func _init() -> void:
 	config = ConfigFile.new()
-	config.load(SETTINGS_FILE)
+	config.load_encrypted_pass(SETTINGS_FILE_PATH, password)
 
 
 func _ready() -> void:
@@ -27,7 +28,7 @@ func register_setting(key: String, default, section: String = DEFAULT_SECTION) -
 	if not settings[section].has(key):
 		settings[section][key] = { "default": default }
 	else:
-		print("%s is a duplicated setting" % key)
+		push_warning("%s is a duplicated setting" % key)
 
 
 func get_value(key: String, section: String = DEFAULT_SECTION):
@@ -37,7 +38,7 @@ func get_value(key: String, section: String = DEFAULT_SECTION):
 func set_value(key: String, value, section: String = DEFAULT_SECTION) -> void:
 	var old_value = get_value(key, section)
 	config.set_value(section, key, value)
-	config.save(SETTINGS_FILE)
+	config.save_encrypted_pass(SETTINGS_FILE_PATH, password)
 	
 	settings_value_changed.emit(key, value, old_value)
 
